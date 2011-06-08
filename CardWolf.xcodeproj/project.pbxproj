@@ -1,0 +1,458 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4193F951381D5510065DE38 /* DeliveryDateController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4193F931381D5490065DE38 /* DeliveryDateController.m */; };
+		B4193F961381D5510065DE38 /* DeliveryDateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4193F941381D54B0065DE38 /* DeliveryDateController.xib */; };
+		B4193F9B1381D9B50065DE38 /* AddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4193F991381D9AA0065DE38 /* AddressController.m */; };
+		B4193F9C1381D9B50065DE38 /* AddressController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4193F9A1381D9B10065DE38 /* AddressController.xib */; };
+		B4193FA01381E1160065DE38 /* ConfirmationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4193F9E1381E1060065DE38 /* ConfirmationController.m */; };
+		B4193FA11381E1160065DE38 /* ConfirmationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4193F9F1381E1100065DE38 /* ConfirmationController.xib */; };
+		B4215C4013708B3C002DCF5D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4215C3F13708B3C002DCF5D /* UIKit.framework */; };
+		B4215C4213708B3C002DCF5D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4215C4113708B3C002DCF5D /* Foundation.framework */; };
+		B4215C4413708B3C002DCF5D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4215C4313708B3C002DCF5D /* CoreGraphics.framework */; };
+		B4215C4A13708B3C002DCF5D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4215C4813708B3C002DCF5D /* InfoPlist.strings */; };
+		B4215C4D13708B3C002DCF5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4215C4C13708B3C002DCF5D /* main.m */; };
+		B4215C5013708B3C002DCF5D /* CardWolfAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4215C4F13708B3C002DCF5D /* CardWolfAppDelegate.m */; };
+		B4215C5313708B3D002DCF5D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4215C5113708B3D002DCF5D /* MainWindow.xib */; };
+		B4215C6313708C91002DCF5D /* CardWolf.png in Resources */ = {isa = PBXBuildFile; fileRef = B4215C6213708C91002DCF5D /* CardWolf.png */; };
+		B4215C6513708CA5002DCF5D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B4215C6413708CA5002DCF5D /* Default.png */; };
+		B4215C6713708E17002DCF5D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B4215C6613708E17002DCF5D /* icon.png */; };
+		B4215C6913709269002DCF5D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B4215C6813709269002DCF5D /* logo.png */; };
+		B4661AA11372C716000987CA /* CardTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4661A9F1372C715000987CA /* CardTypeController.m */; };
+		B4661AA21372C716000987CA /* CardTypeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4661AA01372C716000987CA /* CardTypeController.xib */; };
+		B4661AA71372EF25000987CA /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4661AA51372EF22000987CA /* MessageController.m */; };
+		B4661AA81372EF25000987CA /* MessageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4661AA61372EF24000987CA /* MessageController.xib */; };
+		B4661AAA1372F530000987CA /* CardTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4661AA91372F530000987CA /* CardTypes.plist */; };
+		B4661AB2137551C6000987CA /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = B4661AB1137551C3000987CA /* Card.m */; };
+		B49CF892138436B0009C4BE6 /* CardDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = B49CF890138436B0009C4BE6 /* CardDetailController.m */; };
+		B49CF893138436B0009C4BE6 /* CardDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49CF891138436B0009C4BE6 /* CardDetailController.xib */; };
+		B4C5ED591372BCDB00B8E6B3 /* MainMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C5ED571372BCDB00B8E6B3 /* MainMenuController.m */; };
+		B4C5ED5A1372BCDB00B8E6B3 /* MainMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C5ED581372BCDB00B8E6B3 /* MainMenuController.xib */; };
+		B4DC32A0138460A60043BBCE /* ToFromController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DC329E138460A40043BBCE /* ToFromController.m */; };
+		B4DC32A1138460A60043BBCE /* ToFromController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4DC329F138460A50043BBCE /* ToFromController.xib */; };
+		B4EFA44E1396DDA600309339 /* libPayPalMEP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EFA4421396DDA600309339 /* libPayPalMEP.a */; };
+		B4EFA45A1396EB7600309339 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EFA4591396EB7600309339 /* Security.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		B4EFA45C1396EC0C00309339 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EFA45B1396EC0B00309339 /* libxml2.dylib */; };
+		B4EFA45E1396EC4600309339 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EFA45D1396EC4600309339 /* libz.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B4193F921381D5470065DE38 /* DeliveryDateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliveryDateController.h; sourceTree = "<group>"; };
+		B4193F931381D5490065DE38 /* DeliveryDateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliveryDateController.m; sourceTree = "<group>"; };
+		B4193F941381D54B0065DE38 /* DeliveryDateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeliveryDateController.xib; sourceTree = "<group>"; };
+		B4193F981381D9A60065DE38 /* AddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressController.h; sourceTree = "<group>"; };
+		B4193F991381D9AA0065DE38 /* AddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressController.m; sourceTree = "<group>"; };
+		B4193F9A1381D9B10065DE38 /* AddressController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressController.xib; sourceTree = "<group>"; };
+		B4193F9D1381E1020065DE38 /* ConfirmationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmationController.h; sourceTree = "<group>"; };
+		B4193F9E1381E1060065DE38 /* ConfirmationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmationController.m; sourceTree = "<group>"; };
+		B4193F9F1381E1100065DE38 /* ConfirmationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmationController.xib; sourceTree = "<group>"; };
+		B4215C3B13708B3C002DCF5D /* CardWolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardWolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4215C3F13708B3C002DCF5D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B4215C4113708B3C002DCF5D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B4215C4313708B3C002DCF5D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B4215C4713708B3C002DCF5D /* CardWolf-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CardWolf-Info.plist"; sourceTree = "<group>"; };
+		B4215C4913708B3C002DCF5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B4215C4B13708B3C002DCF5D /* CardWolf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CardWolf-Prefix.pch"; sourceTree = "<group>"; };
+		B4215C4C13708B3C002DCF5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B4215C4E13708B3C002DCF5D /* CardWolfAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardWolfAppDelegate.h; sourceTree = "<group>"; };
+		B4215C4F13708B3C002DCF5D /* CardWolfAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardWolfAppDelegate.m; sourceTree = "<group>"; };
+		B4215C5213708B3D002DCF5D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		B4215C6213708C91002DCF5D /* CardWolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CardWolf.png; sourceTree = "<group>"; };
+		B4215C6413708CA5002DCF5D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		B4215C6613708E17002DCF5D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		B4215C6813709269002DCF5D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		B4661A9E1372C715000987CA /* CardTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardTypeController.h; sourceTree = "<group>"; };
+		B4661A9F1372C715000987CA /* CardTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardTypeController.m; sourceTree = "<group>"; };
+		B4661AA01372C716000987CA /* CardTypeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardTypeController.xib; sourceTree = "<group>"; };
+		B4661AA41372EF22000987CA /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
+		B4661AA51372EF22000987CA /* MessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageController.m; sourceTree = "<group>"; };
+		B4661AA61372EF24000987CA /* MessageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageController.xib; sourceTree = "<group>"; };
+		B4661AA91372F530000987CA /* CardTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CardTypes.plist; sourceTree = "<group>"; };
+		B4661AB0137551C1000987CA /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		B4661AB1137551C3000987CA /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		B49CF88F138436B0009C4BE6 /* CardDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailController.h; sourceTree = "<group>"; };
+		B49CF890138436B0009C4BE6 /* CardDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailController.m; sourceTree = "<group>"; };
+		B49CF891138436B0009C4BE6 /* CardDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardDetailController.xib; sourceTree = "<group>"; };
+		B4C5ED561372BCDB00B8E6B3 /* MainMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuController.h; sourceTree = "<group>"; };
+		B4C5ED571372BCDB00B8E6B3 /* MainMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuController.m; sourceTree = "<group>"; };
+		B4C5ED581372BCDB00B8E6B3 /* MainMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuController.xib; sourceTree = "<group>"; };
+		B4DC329D138460A40043BBCE /* ToFromController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToFromController.h; sourceTree = "<group>"; };
+		B4DC329E138460A40043BBCE /* ToFromController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToFromController.m; sourceTree = "<group>"; };
+		B4DC329F138460A50043BBCE /* ToFromController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToFromController.xib; sourceTree = "<group>"; };
+		B4EFA4421396DDA600309339 /* libPayPalMEP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMEP.a; sourceTree = "<group>"; };
+		B4EFA4431396DDA600309339 /* PayPal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPal.h; sourceTree = "<group>"; };
+		B4EFA4441396DDA600309339 /* PayPalAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalAddress.h; sourceTree = "<group>"; };
+		B4EFA4451396DDA600309339 /* PayPalAdvancedPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalAdvancedPayment.h; sourceTree = "<group>"; };
+		B4EFA4461396DDA600309339 /* PayPalAmounts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalAmounts.h; sourceTree = "<group>"; };
+		B4EFA4471396DDA600309339 /* PayPalContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalContext.h; sourceTree = "<group>"; };
+		B4EFA4481396DDA600309339 /* PayPalInvoiceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalInvoiceData.h; sourceTree = "<group>"; };
+		B4EFA4491396DDA600309339 /* PayPalInvoiceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalInvoiceItem.h; sourceTree = "<group>"; };
+		B4EFA44A1396DDA600309339 /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
+		B4EFA44B1396DDA600309339 /* PayPalPreapprovalDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPreapprovalDetails.h; sourceTree = "<group>"; };
+		B4EFA44C1396DDA600309339 /* PayPalReceiverAmounts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalReceiverAmounts.h; sourceTree = "<group>"; };
+		B4EFA44D1396DDA600309339 /* PPReceiverPaymentDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPReceiverPaymentDetails.h; sourceTree = "<group>"; };
+		B4EFA4591396EB7600309339 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B4EFA45B1396EC0B00309339 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		B4EFA45D1396EC4600309339 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4215C3813708B3C002DCF5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4EFA45E1396EC4600309339 /* libz.dylib in Frameworks */,
+				B4EFA45C1396EC0C00309339 /* libxml2.dylib in Frameworks */,
+				B4EFA45A1396EB7600309339 /* Security.framework in Frameworks */,
+				B4215C4013708B3C002DCF5D /* UIKit.framework in Frameworks */,
+				B4215C4213708B3C002DCF5D /* Foundation.framework in Frameworks */,
+				B4215C4413708B3C002DCF5D /* CoreGraphics.framework in Frameworks */,
+				B4EFA44E1396DDA600309339 /* libPayPalMEP.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B4215C3013708B3C002DCF5D = {
+			isa = PBXGroup;
+			children = (
+				B4215C4513708B3C002DCF5D /* CardWolf */,
+				B4215C3E13708B3C002DCF5D /* Frameworks */,
+				B4215C3C13708B3C002DCF5D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B4215C3C13708B3C002DCF5D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4215C3B13708B3C002DCF5D /* CardWolf.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4215C3E13708B3C002DCF5D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4EFA45D1396EC4600309339 /* libz.dylib */,
+				B4EFA45B1396EC0B00309339 /* libxml2.dylib */,
+				B4EFA4591396EB7600309339 /* Security.framework */,
+				B4215C3F13708B3C002DCF5D /* UIKit.framework */,
+				B4215C4113708B3C002DCF5D /* Foundation.framework */,
+				B4215C4313708B3C002DCF5D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4215C4513708B3C002DCF5D /* CardWolf */ = {
+			isa = PBXGroup;
+			children = (
+				B4C5ED5B1372BCEB00B8E6B3 /* Classes */,
+				B4215C6113708C7D002DCF5D /* Resources */,
+				B4215C4613708B3C002DCF5D /* Supporting Files */,
+			);
+			path = CardWolf;
+			sourceTree = "<group>";
+		};
+		B4215C4613708B3C002DCF5D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4215C4713708B3C002DCF5D /* CardWolf-Info.plist */,
+				B4661AA91372F530000987CA /* CardTypes.plist */,
+				B4215C4813708B3C002DCF5D /* InfoPlist.strings */,
+				B4215C4B13708B3C002DCF5D /* CardWolf-Prefix.pch */,
+				B4215C4C13708B3C002DCF5D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4215C6113708C7D002DCF5D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B4C5ED5D1372BD1D00B8E6B3 /* Nibs */,
+				B4C5ED5C1372BD0500B8E6B3 /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B4C5ED5B1372BCEB00B8E6B3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B4EFA4401396DD3E00309339 /* PayPal */,
+				B4C5ED561372BCDB00B8E6B3 /* MainMenuController.h */,
+				B4C5ED571372BCDB00B8E6B3 /* MainMenuController.m */,
+				B4215C4E13708B3C002DCF5D /* CardWolfAppDelegate.h */,
+				B4215C4F13708B3C002DCF5D /* CardWolfAppDelegate.m */,
+				B4661A9E1372C715000987CA /* CardTypeController.h */,
+				B4661A9F1372C715000987CA /* CardTypeController.m */,
+				B4661AA41372EF22000987CA /* MessageController.h */,
+				B4661AA51372EF22000987CA /* MessageController.m */,
+				B4661AB0137551C1000987CA /* Card.h */,
+				B4661AB1137551C3000987CA /* Card.m */,
+				B4193F921381D5470065DE38 /* DeliveryDateController.h */,
+				B4193F931381D5490065DE38 /* DeliveryDateController.m */,
+				B4193F981381D9A60065DE38 /* AddressController.h */,
+				B4193F991381D9AA0065DE38 /* AddressController.m */,
+				B4193F9D1381E1020065DE38 /* ConfirmationController.h */,
+				B4193F9E1381E1060065DE38 /* ConfirmationController.m */,
+				B49CF88F138436B0009C4BE6 /* CardDetailController.h */,
+				B49CF890138436B0009C4BE6 /* CardDetailController.m */,
+				B4DC329D138460A40043BBCE /* ToFromController.h */,
+				B4DC329E138460A40043BBCE /* ToFromController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		B4C5ED5C1372BD0500B8E6B3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B4215C6813709269002DCF5D /* logo.png */,
+				B4215C6613708E17002DCF5D /* icon.png */,
+				B4215C6413708CA5002DCF5D /* Default.png */,
+				B4215C6213708C91002DCF5D /* CardWolf.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		B4C5ED5D1372BD1D00B8E6B3 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				B4661AA01372C716000987CA /* CardTypeController.xib */,
+				B4661AA61372EF24000987CA /* MessageController.xib */,
+				B4DC329F138460A50043BBCE /* ToFromController.xib */,
+				B4193F9A1381D9B10065DE38 /* AddressController.xib */,
+				B49CF891138436B0009C4BE6 /* CardDetailController.xib */,
+				B4193F9F1381E1100065DE38 /* ConfirmationController.xib */,
+				B4193F941381D54B0065DE38 /* DeliveryDateController.xib */,
+				B4215C5113708B3D002DCF5D /* MainWindow.xib */,
+				B4C5ED581372BCDB00B8E6B3 /* MainMenuController.xib */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+		B4EFA4401396DD3E00309339 /* PayPal */ = {
+			isa = PBXGroup;
+			children = (
+				B4EFA4421396DDA600309339 /* libPayPalMEP.a */,
+				B4EFA4431396DDA600309339 /* PayPal.h */,
+				B4EFA4441396DDA600309339 /* PayPalAddress.h */,
+				B4EFA4451396DDA600309339 /* PayPalAdvancedPayment.h */,
+				B4EFA4461396DDA600309339 /* PayPalAmounts.h */,
+				B4EFA4471396DDA600309339 /* PayPalContext.h */,
+				B4EFA4481396DDA600309339 /* PayPalInvoiceData.h */,
+				B4EFA4491396DDA600309339 /* PayPalInvoiceItem.h */,
+				B4EFA44A1396DDA600309339 /* PayPalPayment.h */,
+				B4EFA44B1396DDA600309339 /* PayPalPreapprovalDetails.h */,
+				B4EFA44C1396DDA600309339 /* PayPalReceiverAmounts.h */,
+				B4EFA44D1396DDA600309339 /* PPReceiverPaymentDetails.h */,
+			);
+			name = PayPal;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4215C3A13708B3C002DCF5D /* CardWolf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4215C5613708B3D002DCF5D /* Build configuration list for PBXNativeTarget "CardWolf" */;
+			buildPhases = (
+				B4215C3713708B3C002DCF5D /* Sources */,
+				B4215C3813708B3C002DCF5D /* Frameworks */,
+				B4215C3913708B3C002DCF5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CardWolf;
+			productName = CardWolf;
+			productReference = B4215C3B13708B3C002DCF5D /* CardWolf.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4215C3213708B3C002DCF5D /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = B4215C3513708B3C002DCF5D /* Build configuration list for PBXProject "CardWolf" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B4215C3013708B3C002DCF5D;
+			productRefGroup = B4215C3C13708B3C002DCF5D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4215C3A13708B3C002DCF5D /* CardWolf */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4215C3913708B3C002DCF5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4215C4A13708B3C002DCF5D /* InfoPlist.strings in Resources */,
+				B4215C5313708B3D002DCF5D /* MainWindow.xib in Resources */,
+				B4215C6313708C91002DCF5D /* CardWolf.png in Resources */,
+				B4215C6513708CA5002DCF5D /* Default.png in Resources */,
+				B4215C6713708E17002DCF5D /* icon.png in Resources */,
+				B4215C6913709269002DCF5D /* logo.png in Resources */,
+				B4C5ED5A1372BCDB00B8E6B3 /* MainMenuController.xib in Resources */,
+				B4661AA21372C716000987CA /* CardTypeController.xib in Resources */,
+				B4661AA81372EF25000987CA /* MessageController.xib in Resources */,
+				B4661AAA1372F530000987CA /* CardTypes.plist in Resources */,
+				B4193F961381D5510065DE38 /* DeliveryDateController.xib in Resources */,
+				B4193F9C1381D9B50065DE38 /* AddressController.xib in Resources */,
+				B4193FA11381E1160065DE38 /* ConfirmationController.xib in Resources */,
+				B49CF893138436B0009C4BE6 /* CardDetailController.xib in Resources */,
+				B4DC32A1138460A60043BBCE /* ToFromController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4215C3713708B3C002DCF5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4215C4D13708B3C002DCF5D /* main.m in Sources */,
+				B4215C5013708B3C002DCF5D /* CardWolfAppDelegate.m in Sources */,
+				B4C5ED591372BCDB00B8E6B3 /* MainMenuController.m in Sources */,
+				B4661AA11372C716000987CA /* CardTypeController.m in Sources */,
+				B4661AA71372EF25000987CA /* MessageController.m in Sources */,
+				B4661AB2137551C6000987CA /* Card.m in Sources */,
+				B4193F951381D5510065DE38 /* DeliveryDateController.m in Sources */,
+				B4193F9B1381D9B50065DE38 /* AddressController.m in Sources */,
+				B4193FA01381E1160065DE38 /* ConfirmationController.m in Sources */,
+				B49CF892138436B0009C4BE6 /* CardDetailController.m in Sources */,
+				B4DC32A0138460A60043BBCE /* ToFromController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B4215C4813708B3C002DCF5D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4215C4913708B3C002DCF5D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B4215C5113708B3D002DCF5D /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4215C5213708B3D002DCF5D /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B4215C5413708B3D002DCF5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B4215C5513708B3D002DCF5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		B4215C5713708B3D002DCF5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CardWolf/CardWolf-Prefix.pch";
+				INFOPLIST_FILE = "CardWolf/CardWolf-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/CardWolf\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B4215C5813708B3D002DCF5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CardWolf/CardWolf-Prefix.pch";
+				INFOPLIST_FILE = "CardWolf/CardWolf-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/CardWolf\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4215C3513708B3C002DCF5D /* Build configuration list for PBXProject "CardWolf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4215C5413708B3D002DCF5D /* Debug */,
+				B4215C5513708B3D002DCF5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4215C5613708B3D002DCF5D /* Build configuration list for PBXNativeTarget "CardWolf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4215C5713708B3D002DCF5D /* Debug */,
+				B4215C5813708B3D002DCF5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B4215C3213708B3C002DCF5D /* Project object */;
+}
