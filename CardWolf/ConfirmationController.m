@@ -126,36 +126,40 @@
 	
 	//optional, set dynamicAmountUpdateEnabled to TRUE if you want to compute
 	//shipping and tax based on the user's address choice, default: FALSE
-	[PayPal getInstance].dynamicAmountUpdateEnabled = TRUE;
+	//[PayPal getInstance].dynamicAmountUpdateEnabled = TRUE;
 	
 	//optional, choose who pays the fee, default: FEEPAYER_EACHRECEIVER
 	[PayPal getInstance].feePayer = FEEPAYER_EACHRECEIVER;
 	
 	//for a payment with a single recipient, use a PayPalPayment object
 	PayPalPayment *payment = [[[PayPalPayment alloc] init] autorelease];
-	payment.recipient = @"cardwolf@paypal.com";
+	payment.recipient = @"seller_1307017992_biz@neilsheppard.com";
 	payment.paymentCurrency = @"GBP";
 	//payment.description = card.cardType;
-    payment.description = @"Test Descriptions\nWith line breaks\nDoes it work?";
+    payment.description = @"Test Descriptions\brWith line breaks\brDoes it work?";
+    //payment.memo = @"Test Descriptions\brWith line breaks\brDoes it work?";
 	payment.merchantName = @"CardWolf";
 	
-	//subtotal of all items, without tax and shipping
+    //subtotal of all items, without tax and shipping
 	payment.subTotal = [NSDecimalNumber decimalNumberWithString:@"1.99"];
-	
+    
 	//invoiceData is a PayPalInvoiceData object which contains tax, shipping, and a list of PayPalInvoiceItem objects
 	payment.invoiceData = [[[PayPalInvoiceData alloc] init] autorelease];
-	payment.invoiceData.totalShipping = [NSDecimalNumber decimalNumberWithString:@"0"];
-	payment.invoiceData.totalTax = [NSDecimalNumber decimalNumberWithString:@"0.20"];
+	payment.invoiceData.totalShipping = [NSDecimalNumber decimalNumberWithString:@"0.20"];
+	//payment.invoiceData.totalTax = [NSDecimalNumber decimalNumberWithString:@"0.00"];
 	
 	//invoiceItems is a list of PayPalInvoiceItem objects
 	//NOTE: sum of totalPrice for all items must equal payment.subTotal
 	//NOTE: example only shows a single item, but you can have more than one
 	payment.invoiceData.invoiceItems = [NSMutableArray array];
+
 	PayPalInvoiceItem *item = [[[PayPalInvoiceItem alloc] init] autorelease];
 	item.totalPrice = payment.subTotal;
+    item.itemCount = [NSNumber numberWithInt:1];
+    item.itemPrice = [NSDecimalNumber decimalNumberWithString:@"1.99"];
 	item.name = card.cardType;
 	[payment.invoiceData.invoiceItems addObject:item];
-	
+    
 	[[PayPal getInstance] checkoutWithPayment:payment];
     
 }
