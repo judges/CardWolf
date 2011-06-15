@@ -52,10 +52,23 @@
     
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped:)];
     
+    [datePicker addTarget:self action:@selector(dateChanged) forControlEvents:UIControlEventValueChanged];
+    
     self.navigationItem.rightBarButtonItem = doneButton;
     
+    if (card.cardDate != nil)
+        [datePicker setDate:card.cardDate];
+    else
+        [datePicker setDate:[NSDate date]];
+    
     [doneButton release];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [tableViewOutlet reloadData];
+    
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -77,4 +90,37 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(IBAction)dateChanged
+{
+    [tableViewOutlet reloadData];
+}
+
+#pragma mark -
+#pragma mark Table View Methods
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *DateCellIdentifier = @"DateCellIdentifier";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DateCellIdentifier];
+    if (cell == nil) 
+    {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:DateCellIdentifier] autorelease];
+        
+        [cell.textLabel setFont:[UIFont systemFontOfSize: 17.0]];
+        [cell.textLabel setTextColor:[UIColor colorWithRed:0.243 green:0.306 blue:0.435 alpha:1.0]];
+        [cell.textLabel setTextAlignment:UITextAlignmentCenter];
+    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterFullStyle];
+    
+    [cell.textLabel setText:[formatter stringFromDate:[datePicker date]]];
+    [formatter release];
+        
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;   
+}
 @end

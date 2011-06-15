@@ -10,9 +10,10 @@
 #import "Card.h"
 
 
-@interface DeliveryDateController : UIViewController <UIPickerViewDelegate> {
+@interface DeliveryDateController : UIViewController <UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource> {
     Card *card;
     IBOutlet UIDatePicker *datePicker;
+    IBOutlet UITableView *tableViewOutlet;
 }
 
 @property (nonatomic, retain) Card* card;
@@ -20,5 +21,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil card:(Card *)userCard;
 
 - (IBAction)doneButtonTapped:(id)sender;
+- (IBAction)dateChanged;
 
 @end

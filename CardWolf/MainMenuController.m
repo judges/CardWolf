@@ -16,7 +16,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"CardWolf Menu";
+        self.title = @"CardWolf";
         UIBarButtonItem *backButton =
         [[UIBarButtonItem alloc]
          initWithTitle:@"Menu"
