@@ -25,6 +25,8 @@
     [cardWolfController pushViewController:mainMenuController animated:NO];
     [MainMenuController release];
     
+    cardWolfController.navigationBar.tintColor = [UIColor colorWithRed:.8 green:.2 blue:.2 alpha:1];
+    
     // Override point for customization after application launch.
     [self.window addSubview:cardWolfController.view];
     [self.window makeKeyAndVisible];
