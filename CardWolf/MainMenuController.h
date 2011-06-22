@@ -9,14 +9,11 @@
 #import <UIKit/UIKit.h>
 
 
-@interface MainMenuController : UIViewController {
-    IBOutlet UIButton *cardButton;
-    IBOutlet UIButton *calendarButton;
-    IBOutlet UIButton *costButton;
-    IBOutlet UIButton *contactButton;
-    IBOutlet UIButton *stuffButton;
+@interface MainMenuController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    NSMutableArray *menuDetailArray;
+    IBOutlet UITableView *tableViewOutlet;
 }
 
--(IBAction)gotoCardScreen:(id)sender;
+@property (nonatomic, retain) NSMutableArray *menuDetailArray;
 
 @end

@@ -30,6 +30,12 @@
 		B4661AA81372EF25000987CA /* MessageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4661AA61372EF24000987CA /* MessageController.xib */; };
 		B4661AAA1372F530000987CA /* CardTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4661AA91372F530000987CA /* CardTypes.plist */; };
 		B4661AB2137551C6000987CA /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = B4661AB1137551C3000987CA /* Card.m */; };
+		B47CF76613B2808900C61015 /* card32.png in Resources */ = {isa = PBXBuildFile; fileRef = B47CF76413B2808900C61015 /* card32.png */; };
+		B47CF76713B2808900C61015 /* card64.png in Resources */ = {isa = PBXBuildFile; fileRef = B47CF76513B2808900C61015 /* card64.png */; };
+		B47CF77213B294F800C61015 /* calendar32.png in Resources */ = {isa = PBXBuildFile; fileRef = B47CF77113B294F800C61015 /* calendar32.png */; };
+		B47CF77513B2958900C61015 /* mailbox32.png in Resources */ = {isa = PBXBuildFile; fileRef = B47CF77413B2958900C61015 /* mailbox32.png */; };
+		B47CF77713B2963600C61015 /* creditcards32.png in Resources */ = {isa = PBXBuildFile; fileRef = B47CF77613B2963600C61015 /* creditcards32.png */; };
+		B47CF77913B296DF00C61015 /* sunglasses32.png in Resources */ = {isa = PBXBuildFile; fileRef = B47CF77813B296DF00C61015 /* sunglasses32.png */; };
 		B49CF892138436B0009C4BE6 /* CardDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = B49CF890138436B0009C4BE6 /* CardDetailController.m */; };
 		B49CF893138436B0009C4BE6 /* CardDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49CF891138436B0009C4BE6 /* CardDetailController.xib */; };
 		B4C5ED591372BCDB00B8E6B3 /* MainMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C5ED571372BCDB00B8E6B3 /* MainMenuController.m */; };
@@ -76,6 +82,12 @@
 		B4661AA91372F530000987CA /* CardTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CardTypes.plist; sourceTree = "<group>"; };
 		B4661AB0137551C1000987CA /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		B4661AB1137551C3000987CA /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		B47CF76413B2808900C61015 /* card32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card32.png; sourceTree = "<group>"; };
+		B47CF76513B2808900C61015 /* card64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card64.png; sourceTree = "<group>"; };
+		B47CF77113B294F800C61015 /* calendar32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar32.png; sourceTree = "<group>"; };
+		B47CF77413B2958900C61015 /* mailbox32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mailbox32.png; sourceTree = "<group>"; };
+		B47CF77613B2963600C61015 /* creditcards32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = creditcards32.png; sourceTree = "<group>"; };
+		B47CF77813B296DF00C61015 /* sunglasses32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunglasses32.png; sourceTree = "<group>"; };
 		B49CF88F138436B0009C4BE6 /* CardDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailController.h; sourceTree = "<group>"; };
 		B49CF890138436B0009C4BE6 /* CardDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailController.m; sourceTree = "<group>"; };
 		B49CF891138436B0009C4BE6 /* CardDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardDetailController.xib; sourceTree = "<group>"; };
@@ -212,6 +224,12 @@
 		B4C5ED5C1372BD0500B8E6B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B47CF77813B296DF00C61015 /* sunglasses32.png */,
+				B47CF77613B2963600C61015 /* creditcards32.png */,
+				B47CF77413B2958900C61015 /* mailbox32.png */,
+				B47CF77113B294F800C61015 /* calendar32.png */,
+				B47CF76413B2808900C61015 /* card32.png */,
+				B47CF76513B2808900C61015 /* card64.png */,
 				B4215C6813709269002DCF5D /* logo.png */,
 				B4215C6613708E17002DCF5D /* icon.png */,
 				B4215C6413708CA5002DCF5D /* Default.png */,
@@ -317,6 +335,12 @@
 				B4193FA11381E1160065DE38 /* ConfirmationController.xib in Resources */,
 				B49CF893138436B0009C4BE6 /* CardDetailController.xib in Resources */,
 				B4DC32A1138460A60043BBCE /* ToFromController.xib in Resources */,
+				B47CF76613B2808900C61015 /* card32.png in Resources */,
+				B47CF76713B2808900C61015 /* card64.png in Resources */,
+				B47CF77213B294F800C61015 /* calendar32.png in Resources */,
+				B47CF77513B2958900C61015 /* mailbox32.png in Resources */,
+				B47CF77713B2963600C61015 /* creditcards32.png in Resources */,
+				B47CF77913B296DF00C61015 /* sunglasses32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

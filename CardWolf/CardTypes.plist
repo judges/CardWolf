@@ -6,12 +6,25 @@
 	<string>New Born Girl</string>
 	<string>1st Birthday Boy</string>
 	<string>1st Birthday Girl</string>
-	<string>Christening Boy</string>
-	<string>Christening Girl</string>
-	<string>Mother&apos;s Day</string>
-	<string>Father&apos;s Day</string>
-	<string>Get Well Soon</string>
-	<string>Good Luck</string>
-	<string>Sympathies</string>
+	<string>Happy Birthday Boy</string>
+	<string>Happy Birthday Girl</string>
+	<string>Happy Birthday Teenage Boy</string>
+	<string>Happy Birthday Teenage Girl</string>
+	<string>16th Birthday Boy</string>
+	<string>16th Birthday Girl</string>
+	<string>18th Birthday Male</string>
+	<string>18th Birthday Female</string>
+	<string>21st Birthday Male</string>
+	<string>21st Birthday Female</string>
+	<string>30th Birthday Male</string>
+	<string>30th Birthday Female</string>
+	<string>40th Birthday Male</string>
+	<string>40th Birthday Female</string>
+	<string>50th Birthday Male</string>
+	<string>50th Birthday Female</string>
+	<string>60th Birthday Male</string>
+	<string>60th Birthday Female</string>
+	<string>Happy Birthday Male</string>
+	<string>Happy Birthday Female</string>
 </array>
 </plist>

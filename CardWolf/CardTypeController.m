@@ -75,7 +75,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CardTypeIdentifier"];
     
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CardTypeIdentifier"] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CardTypeIdentifier"] autorelease];
     }
     
     cell.textLabel.text = [cardTypeArray objectAtIndex:indexPath.row];
