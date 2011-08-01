@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Rows</key>
+	<array>
+		<dict>
+			<key>Children</key>
+			<array>
+				<dict>
+					<key>Title</key>
+					<string>General</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>Oldies</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>Party Animal</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>Unisex</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>For Her</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>Women</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>Friends</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>18th</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>21st</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>30th</string>
+				</dict>
+			</array>
+			<key>Title</key>
+			<string>Birthday</string>
+		</dict>
+		<dict>
+			<key>Children</key>
+			<array>
+				<dict>
+					<key>Title</key>
+					<string>Sympathy</string>
+				</dict>
+			</array>
+			<key>Title</key>
+			<string>Sympathy</string>
+		</dict>
+	</array>
+</dict>
+</plist>

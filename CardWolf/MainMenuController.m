@@ -52,7 +52,8 @@
 	if (CGColorGetPattern(color.CGColor) == NULL) {
 		color = [UIColor lightGrayColor];
 	}
-	self.view.backgroundColor = color;
+	self.view.backgroundColor = color;   
+
     
     // Hard coded list of details for card component screen
     menuDetailArray = [[NSMutableArray alloc] init];
@@ -144,7 +145,8 @@
     
     if (selectedMenu == @"Buy Card")
     {
-        CardTypeController *cardTypeController = [[CardTypeController alloc] initWithNibName:@"CardTypeController" bundle:nil]; 
+        card = [Card alloc];
+        CardTypeController *cardTypeController = [[CardTypeController alloc] initWithNibName:@"CardTypeController" bundle:nil card:card]; 
         
         [self.navigationController pushViewController:cardTypeController animated:YES];
         

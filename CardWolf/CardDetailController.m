@@ -22,8 +22,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         card = userCard;
-        self.navigationItem.title = card.cardType;
-
+        self.navigationItem.title = @"Card Details";
+        NSLog(@"%@", card.cardType);
     }
     return self;
 }
@@ -74,6 +74,19 @@
     [cardDetailArray addObject:messageDict];
     [cardDetailArray addObject:dateDict];
     [cardDetailArray addObject:addressDict];
+    
+    cardTitle.text = card.cardType;
+    NSLog(@"%@", card.cardImage);
+    
+    UIImage *image = [UIImage imageNamed:card.cardImage];
+    cardImage.image = image;
+    
+    UIColor *color = [UIColor groupTableViewBackgroundColor];
+	if (CGColorGetPattern(color.CGColor) == NULL) {
+		color = [UIColor lightGrayColor];
+	}
+	self.view.backgroundColor = color; 
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

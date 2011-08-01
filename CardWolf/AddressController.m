@@ -8,6 +8,7 @@
 
 #import "AddressController.h"
 #import "ConfirmationController.h"
+#import "regex.h"
 
 @implementation AddressController
 
@@ -150,6 +151,7 @@
 
 - (IBAction)doneButtonTapped:(id)sender {
     //Validate the fields! 
+    
     NSString *message = @"You have failed to complete the following fields";
     
     NSMutableArray *chunks = [[NSMutableArray alloc] initWithCapacity:4];
@@ -161,70 +163,96 @@
     
     bool error = false;
     
-    [messageArray addObject:message];
+    bool validPostcode = [self checkPostcode:postcodeField.text];
     
-    if ([numberField.text isEqualToString:@""] && numberField.text.length == 0) {
-        [chunks addObject:numberMessage];
-        error = true;
-    }
-    if ([address1Field.text isEqualToString:@""] && address1Field.text.length == 0) {
-        [chunks addObject:add1Message];
-        error = true;
-    }
-    if ([cityField.text isEqualToString:@""] && cityField.text.length == 0) {
-        [chunks addObject:cityMessage];
-        error = true;
-    }
-    if ([postcodeField.text isEqualToString:@""] && postcodeField.text.length == 0) {
-        [chunks addObject:postcodeMessage];
-        error = true;
-    }
-    
-    if (error == true) 
-    {
-        NSString *alertMessage = [chunks componentsJoinedByString:@","];
-        [messageArray addObject:alertMessage];
-        NSString *fullMessage = [messageArray componentsJoinedByString:@":"];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:fullMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    if (!(validPostcode)) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Invalid Postcode, please use a valid one" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
-        [chunks release];
-        [message release];
-        [numberMessage release];
-        [add1Message release];
-        [cityMessage release];
-        [postcodeMessage release];
     }
-    else 
-    {
-        [chunks release];
-        [message release];
-        [numberMessage release];
-        [add1Message release];
-        [cityMessage release]; 
-        [postcodeMessage release];
     
-        NSMutableString *address = [[NSMutableString alloc] initWithString:numberField.text];            
-        
-        [address appendString:@" "];
-        [address appendString:address1Field.text];
-        
-        if (address2Field.text.length > 0) {
-            [address appendString:@","];
-            [address appendString:address2Field.text];
+    if (validPostcode)
+    {
+        [messageArray addObject:message];
+    
+        if ([numberField.text isEqualToString:@""] && numberField.text.length == 0) {
+            [chunks addObject:numberMessage];
+            error = true;
         }
+        if ([address1Field.text isEqualToString:@""] && address1Field.text.length == 0) {
+            [chunks addObject:add1Message];
+            error = true;
+        }
+        if ([cityField.text isEqualToString:@""] && cityField.text.length == 0) {
+            [chunks addObject:cityMessage];
+            error = true;
+        }
+        if ([postcodeField.text isEqualToString:@""] && postcodeField.text.length == 0) {
+            [chunks addObject:postcodeMessage];
+            error = true;
+        }
+    
+        if (error == true) 
+        {
+            NSString *alertMessage = [chunks componentsJoinedByString:@","];
+            [messageArray addObject:alertMessage];
+            NSString *fullMessage = [messageArray componentsJoinedByString:@":"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:fullMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+            [chunks release];
+            [message release];
+            [numberMessage release];
+            [add1Message release];
+            [cityMessage release];
+            [postcodeMessage release];
+        }
+        else 
+        {
+            [chunks release];
+            [message release];
+            [numberMessage release];
+            [add1Message release];
+            [cityMessage release]; 
+            [postcodeMessage release];
+    
+            NSMutableString *address = [[NSMutableString alloc] initWithString:numberField.text];            
         
-        [address appendString:@","];
-        [address appendString:cityField.text];
+            [address appendString:@" "];
+            [address appendString:address1Field.text];
         
-        [address appendString:@","];
-        [address appendString:postcodeField.text];
+            if (address2Field.text.length > 0) {
+                [address appendString:@","];
+                [address appendString:address2Field.text];
+            }
         
-        NSLog(@"%@", address);
+            [address appendString:@","];
+            [address appendString:cityField.text];
         
-        card.cardAddress = address;
+            [address appendString:@","];
+            [address appendString:postcodeField.text];
         
-        [self.navigationController popViewControllerAnimated:YES];
+            NSLog(@"%@", address);
+        
+            card.cardAddress = address;
+        
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+}
+
+- (bool) checkPostcode:(NSString *)postCode {
+    NSString *regex = @"^([A-PR-UWYZ](([0-9](([0-9]|[A-HJKSTUW])?)?)|([A-HK-Y][0-9]([0-9]|[ABEHMNPRVWXY])?)) [0-9][ABD-HJLNP-UW-Z]{2})|GIR 0AA$";
+    
+    NSPredicate *regextest = [NSPredicate
+                              predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    if ([regextest evaluateWithObject:postCode] == YES) {
+        NSLog(@"Match!");
+        return true;
+    } else {
+        NSLog(@"No match!");
+        return false;
     }
 }
 

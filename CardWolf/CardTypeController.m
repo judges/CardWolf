@@ -9,15 +9,21 @@
 #import "CardTypeController.h"
 #import "MessageController.h"
 #import "CardDetailController.h"
+#import "CardFlowViewController.h"
 
 @implementation CardTypeController
 
 @synthesize cardTypeArray;
+@synthesize data;
+@synthesize CurrentLevel;
+@synthesize CurrentTitle;
+@synthesize cardType;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil card:(Card *)userCard
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        card = userCard;
         self.title = @"Card Type";
     }
     return self;
@@ -26,6 +32,8 @@
 - (void)dealloc
 {
     [cardTypeArray release];
+    //[data release];
+    [self.cardType release];
     [super dealloc];
 }
 
@@ -41,16 +49,25 @@
 
 - (void)viewDidLoad
 {
-    //NSArray *arrayToLoadPicker = [[NSArray alloc] initWithObjects:@"Birthday", @"Christmas", @"Mother's Day", @"Father's Day", @"Sympathy", @"Congratulations", @"Good Luck", nil];
+    NSString *Path = [[NSBundle mainBundle] bundlePath];
+	NSString *DataPath = [Path stringByAppendingPathComponent:@"CardType_v2.plist"];
+	
+	NSDictionary *tempDict = [[NSDictionary alloc] initWithContentsOfFile:DataPath];
+	self.data = tempDict;
+	[tempDict release];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"CardTypes" ofType:@"plist"];
-    
-    NSMutableArray *arrayToLoadPicker = [[NSMutableArray alloc] initWithContentsOfFile:path];
-    
-    self.cardTypeArray = arrayToLoadPicker;
-    
-    [arrayToLoadPicker release];
-    
+    if(CurrentLevel == 0) {
+		//Initialize our table data source
+        NSMutableArray *arrayToLoadPicker = [[NSArray alloc] init];
+		arrayToLoadPicker = [data objectForKey:@"Rows"];
+		
+        self.cardTypeArray = arrayToLoadPicker;
+        
+        [arrayToLoadPicker release];
+	}
+	else 
+		self.navigationItem.title = CurrentTitle;
+
     [super viewDidLoad];
 }
 
@@ -77,34 +94,56 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CardTypeIdentifier"] autorelease];
     }
+    // Set up the cell...
+	NSDictionary *dictionary = [cardTypeArray objectAtIndex:indexPath.row];
+	cell.textLabel.text = [dictionary objectForKey:@"Title"];
     
-    cell.textLabel.text = [cardTypeArray objectAtIndex:indexPath.row];
+    //cell.textLabel.text = [cardTypeArray objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //NSString *message = [NSString stringWithFormat:@"You selected: %@", [cardTypeArray objectAtIndex:indexPath.row]];
-        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        //[alert show];
-        //[alert release];
-    
-    Card *userCard = [Card alloc];
-    
-    userCard.cardType = [NSString stringWithFormat:@"%@", [cardTypeArray objectAtIndex:indexPath.row]];
-//    MessageController *messageController = [[MessageController alloc] initWithNibName:@"MessageController" bundle:nil card:userCard]; 
-//    
-//    [self.navigationController pushViewController:messageController animated:YES];
-//    
-//    [messageController release];
-//    [userCard release];
-    
-    CardDetailController *detailController = [[CardDetailController alloc] initWithNibName:@"CardDetailController" bundle:nil card:userCard];
-    
-    [self.navigationController pushViewController:detailController animated:YES];
-    
-    [detailController release];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{    
+	//Get the dictionary of the selected data source.
+	NSDictionary *dictionary = [cardTypeArray objectAtIndex:indexPath.row];
+	
+	//Get the children of the present item.
+	NSMutableArray *Children = [dictionary objectForKey:@"Children"];
+	
+	if([Children count] == 0) {  
+        self.cardType = [[NSMutableString alloc] initWithString:card.cardSubCat];
+        
+        [self.cardType appendString:[dictionary objectForKey:@"Title"]];
+
+        card.cardType = self.cardType;
+        
+        CardFlowViewController *flowController = [[CardFlowViewController alloc] initWithNibName:@"CardFlowViewController" bundle:nil card:card];
+            
+        [self.navigationController pushViewController:flowController animated:YES];
+            
+        [flowController release];
+	}
+	else {
+        self.cardType = [[NSMutableString alloc] initWithString:[dictionary objectForKey:@"Title"]];
+        [self.cardType appendString:@" - "];
+        card.cardSubCat = self.cardType;
+        
+        CardTypeController *cardTypeController = [[CardTypeController alloc] initWithNibName:@"CardTypeController" bundle:nil card:card];         		
+		//Increment the Current View
+		cardTypeController.CurrentLevel += 1;
+		
+		//Set the title;
+		cardTypeController.CurrentTitle = [dictionary objectForKey:@"Title"];
+		
+		//Push the new table view on the stack
+		[self.navigationController pushViewController:cardTypeController animated:YES];
+		
+		cardTypeController.cardTypeArray = Children;
+		
+		[cardTypeController release];
+	}
 }
 
 @end

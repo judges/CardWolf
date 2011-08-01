@@ -15,7 +15,7 @@
 		<string>icon.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>CardWolf.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.CardWolf.CardWolf</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

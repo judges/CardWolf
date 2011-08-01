@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Card.h"
 
 
 @interface MainMenuController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     NSMutableArray *menuDetailArray;
     IBOutlet UITableView *tableViewOutlet;
+    Card *card;
 }
 
 @property (nonatomic, retain) NSMutableArray *menuDetailArray;

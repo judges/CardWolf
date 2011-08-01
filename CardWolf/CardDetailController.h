@@ -14,6 +14,8 @@
     NSMutableArray *cardDetailArray;
     Card *card;
     IBOutlet UITableView *tableViewOutlet;
+    IBOutlet UIImageView *cardImage;
+    IBOutlet UILabel *cardTitle;
 }
 
 @property (nonatomic, retain) NSMutableArray *cardDetailArray;

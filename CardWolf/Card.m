@@ -17,6 +17,8 @@
 @synthesize cardFrom;
 @synthesize cardType;
 @synthesize cardAddress;
+@synthesize cardSubCat;
 @synthesize cardMessage;
+@synthesize cardImage;
 
 @end

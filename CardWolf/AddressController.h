@@ -25,5 +25,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil card:(Card *)userCard;
 - (IBAction) doneButtonTapped:(id) sender;
 - (void) setViewMovedUp:(BOOL)movedUp;
+- (bool) checkPostcode:(NSString *)postCode;
 
 @end

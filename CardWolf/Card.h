@@ -15,6 +15,8 @@
     NSString *cardMessage;
     NSString *cardType;
     NSString *cardAddress;
+    NSString *cardSubCat;
+    NSString *cardImage;
     NSDate *cardDate;
     double *cardCost;
 }
@@ -24,6 +26,8 @@
 @property (nonatomic, retain) NSString* cardMessage;
 @property (nonatomic, retain) NSString* cardType;
 @property (nonatomic, retain) NSString* cardAddress;
+@property (nonatomic, retain) NSString* cardSubCat;
+@property (nonatomic, retain) NSString* cardImage;
 @property (nonatomic, retain) NSDate* cardDate;
 @property (nonatomic) double* cardCost;
 

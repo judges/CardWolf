@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Birthday - General</key>
+	<array>
+		<string>MSC022.jpg</string>
+		<string>SCR092.jpg</string>
+		<string>SCR150.jpg</string>
+	</array>
+	<key>Birthday - Party Animal</key>
+	<array>
+		<string>MSC074.jpg</string>
+		<string>SCR002.jpg</string>
+		<string>SCR055.jpg</string>
+		<string>SCR098.jpg</string>
+	</array>
+	<key>Birthday - Oldies</key>
+	<array>
+		<string>MSC043.jpg</string>
+		<string>MSC073.jpg</string>
+		<string>SCR030.jpg</string>
+		<string>SCR217.jpg</string>
+	</array>
+	<key>Birthday - Unisex</key>
+	<array>
+		<string>MSC088.jpg</string>
+	</array>
+	<key>Birthday - For Her</key>
+	<array>
+		<string>SCR042.jpg</string>
+	</array>
+	<key>Birthday - Women</key>
+	<array>
+		<string>MSC087.jpg</string>
+	</array>
+	<key>Birthday - Friends</key>
+	<array>
+		<string>SCR006.jpg</string>
+	</array>
+	<key>Birthday - 18th</key>
+	<array>
+		<string>SCR055.jpg</string>
+	</array>
+	<key>Birthday - 21st</key>
+	<array>
+		<string>SCR222.jpg</string>
+	</array>
+	<key>Birthday - 30th</key>
+	<array>
+		<string>SCR194.jpg</string>
+	</array>
+	<key>Sympathy - Sympathy</key>
+	<array>
+		<string>SCR201.jpg</string>
+	</array>
+</dict>
+</plist>
