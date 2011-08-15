@@ -31,12 +31,15 @@
         numberField.returnKeyType = UIReturnKeyDone;
         numberField.backgroundColor = [UIColor whiteColor];
         numberField.autocorrectionType = UITextAutocorrectionTypeYes; // no auto correction support
-        numberField.autocapitalizationType = UITextAutocapitalizationTypeSentences; // no auto capitalization support
+        numberField.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
         numberField.textAlignment = UITextAlignmentLeft;
         numberField.enablesReturnKeyAutomatically = YES;
         numberField.tag = 0;  
         numberField.clearButtonMode = UITextFieldViewModeWhileEditing; // no clear 'x' button to the right
         numberField.enabled =  YES;
+        if ([[card.cardAddressArray objectAtIndex:0] length] > 0) {
+            numberField.text = [card.cardAddressArray objectAtIndex:0];
+        }
         
         address1Field = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
         address1Field.delegate = self;
@@ -47,12 +50,15 @@
         address1Field.returnKeyType = UIReturnKeyDone;
         address1Field.backgroundColor = [UIColor whiteColor];
         address1Field.autocorrectionType = UITextAutocorrectionTypeYes; // no auto correction support
-        address1Field.autocapitalizationType = UITextAutocapitalizationTypeSentences; // no auto capitalization support
+        address1Field.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
         address1Field.textAlignment = UITextAlignmentLeft;
         address1Field.enablesReturnKeyAutomatically = YES;
         address1Field.tag = 0;  
         address1Field.clearButtonMode = UITextFieldViewModeWhileEditing; // no clear 'x' button to the right
         address1Field.enabled =  YES;
+        if ([[card.cardAddressArray objectAtIndex:1] length] > 0) {
+            address1Field.text = [card.cardAddressArray objectAtIndex:1];
+        }
 
         address2Field = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
         address2Field.delegate = self;
@@ -63,12 +69,15 @@
         address2Field.returnKeyType = UIReturnKeyDone;
         address2Field.backgroundColor = [UIColor whiteColor];
         address2Field.autocorrectionType = UITextAutocorrectionTypeYes; // no auto correction support
-        address2Field.autocapitalizationType = UITextAutocapitalizationTypeSentences; // no auto capitalization support
+        address2Field.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
         address2Field.textAlignment = UITextAlignmentLeft;
         address2Field.enablesReturnKeyAutomatically = YES;
         address2Field.tag = 0;  
         address2Field.clearButtonMode = UITextFieldViewModeWhileEditing; // no clear 'x' button to the right
         address2Field.enabled =  YES;
+        if ([[card.cardAddressArray objectAtIndex:2] length] > 0) {
+            address2Field.text = [card.cardAddressArray objectAtIndex:2];
+        }
 
         cityField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
         cityField.delegate = self;
@@ -79,12 +88,15 @@
         cityField.returnKeyType = UIReturnKeyDone;
         cityField.backgroundColor = [UIColor whiteColor];
         cityField.autocorrectionType = UITextAutocorrectionTypeYes; // no auto correction support
-        cityField.autocapitalizationType = UITextAutocapitalizationTypeSentences; // no auto capitalization support
+        cityField.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
         cityField.textAlignment = UITextAlignmentLeft;
         cityField.enablesReturnKeyAutomatically = YES;
         cityField.tag = 0;  
         cityField.clearButtonMode = UITextFieldViewModeWhileEditing; // no clear 'x' button to the right
         cityField.enabled =  YES;
+        if ([[card.cardAddressArray objectAtIndex:3] length] > 0) {
+            cityField.text = [card.cardAddressArray objectAtIndex:3];
+        }
 
         postcodeField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
         postcodeField.delegate = self;
@@ -95,12 +107,15 @@
         postcodeField.returnKeyType = UIReturnKeyDone;
         postcodeField.backgroundColor = [UIColor whiteColor];
         postcodeField.autocorrectionType = UITextAutocorrectionTypeYes; // no auto correction support
-        postcodeField.autocapitalizationType = UITextAutocapitalizationTypeSentences; // no auto capitalization support
+        postcodeField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters; // no auto capitalization support
         postcodeField.textAlignment = UITextAlignmentLeft;
         postcodeField.enablesReturnKeyAutomatically = YES;
         postcodeField.tag = 0;  
         postcodeField.clearButtonMode = UITextFieldViewModeWhileEditing; // no clear 'x' button to the right
         postcodeField.enabled =  YES;
+        if ([[card.cardAddressArray objectAtIndex:4] length] > 0) {
+            postcodeField.text = [card.cardAddressArray objectAtIndex:4];
+        }
     }
     return self;
     
@@ -216,23 +231,32 @@
             [cityMessage release]; 
             [postcodeMessage release];
     
+            card.cardAddressArray = [[NSMutableArray alloc] init];
+            
             NSMutableString *address = [[NSMutableString alloc] initWithString:numberField.text];            
-        
+            
+            [card.cardAddressArray addObject:numberField.text];
+            
             [address appendString:@" "];
             [address appendString:address1Field.text];
         
+            [card.cardAddressArray addObject:address1Field.text];
+            
             if (address2Field.text.length > 0) {
                 [address appendString:@","];
                 [address appendString:address2Field.text];
+                [card.cardAddressArray addObject:address2Field.text];
+            } else {
+                [card.cardAddressArray addObject:@" "];
             }
         
             [address appendString:@","];
             [address appendString:cityField.text];
+            [card.cardAddressArray addObject:cityField.text];
         
             [address appendString:@","];
             [address appendString:postcodeField.text];
-        
-            NSLog(@"%@", address);
+            [card.cardAddressArray addObject:postcodeField.text];
         
             card.cardAddress = address;
         
@@ -242,16 +266,14 @@
 }
 
 - (bool) checkPostcode:(NSString *)postCode {
-    NSString *regex = @"^([A-PR-UWYZ](([0-9](([0-9]|[A-HJKSTUW])?)?)|([A-HK-Y][0-9]([0-9]|[ABEHMNPRVWXY])?)) [0-9][ABD-HJLNP-UW-Z]{2})|GIR 0AA$";
+    NSString *regex = @"^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) {0,1}[0-9][A-Za-z]{2})$";
     
     NSPredicate *regextest = [NSPredicate
                               predicateWithFormat:@"SELF MATCHES %@", regex];
     
     if ([regextest evaluateWithObject:postCode] == YES) {
-        NSLog(@"Match!");
         return true;
     } else {
-        NSLog(@"No match!");
         return false;
     }
 }

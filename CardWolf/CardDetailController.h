@@ -9,17 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "Card.h"
 
-
-@interface CardDetailController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface CardDetailController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     NSMutableArray *cardDetailArray;
     Card *card;
     IBOutlet UITableView *tableViewOutlet;
     IBOutlet UIImageView *cardImage;
     IBOutlet UILabel *cardTitle;
+    UITextField *toField;
+    UITextField *fromField;
+    UITextField *messageField;
 }
 
 @property (nonatomic, retain) NSMutableArray *cardDetailArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil card:(Card *)userCard;
+- (void)setUpFields;
 
 @end

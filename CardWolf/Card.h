@@ -19,6 +19,7 @@
     NSString *cardImage;
     NSDate *cardDate;
     double *cardCost;
+    NSMutableArray *cardAddressArray;
 }
 
 @property (nonatomic, retain) NSString* cardTo;
@@ -30,5 +31,6 @@
 @property (nonatomic, retain) NSString* cardImage;
 @property (nonatomic, retain) NSDate* cardDate;
 @property (nonatomic) double* cardCost;
+@property (nonatomic, retain) NSMutableArray* cardAddressArray;
 
 @end

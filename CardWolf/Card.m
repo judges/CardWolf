@@ -20,5 +20,6 @@
 @synthesize cardSubCat;
 @synthesize cardMessage;
 @synthesize cardImage;
+@synthesize cardAddressArray;
 
 @end

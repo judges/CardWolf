@@ -132,8 +132,8 @@
     
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MessageIdentifier"] autorelease];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         if ([toFromDetails objectAtIndex:indexPath.row] == @"To")
             [cell addSubview:toField];
