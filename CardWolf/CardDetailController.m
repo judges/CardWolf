@@ -17,6 +17,9 @@
 
 @synthesize cardDetailArray;
 
+// This code handles the scrolling when tabbing through input fields
+static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil card:(Card *)userCard
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,7 +54,7 @@
     // Do any additional setup after loading the view from its nib.
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped:)];
     
-    //self.navigationItem.rightBarButtonItem = doneButton;
+    self.navigationItem.rightBarButtonItem = doneButton;
     
     [doneButton release];
     
@@ -87,6 +90,12 @@
 	}
 	self.view.backgroundColor = color; 
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    tap.cancelsTouchesInView = NO;
+    keyboardInView = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -149,6 +158,7 @@
         df.dateStyle = NSDateFormatterMediumStyle;
         
         cell.detailTextLabel.text = [df stringFromDate:card.cardDate];
+        [df release];
     }
     
     if (cell.textLabel.text == @"Address" && card.cardAddress.length > 0) {
@@ -199,18 +209,38 @@
 
 - (IBAction)doneButtonTapped:(id)sender {
     //Validate the fields! 
-    ConfirmationController *confirmationController = [[ConfirmationController alloc] initWithNibName:@"ConfirmationController" bundle:nil card:card];
+    BOOL blankField = NO;
+   
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateStyle = NSDateFormatterMediumStyle;
     
-    [self.navigationController pushViewController:confirmationController animated:YES];
+    if ([card.cardTo length] == 0)
+        blankField = YES;
+    if ([card.cardFrom length] == 0)
+        blankField = YES;
+    if ([card.cardMessage length] == 0)
+        blankField = YES;
+    if ([[df stringFromDate:card.cardDate] length] == 0)
+        blankField = YES;
+    if ([card.cardAddress length] == 0)
+        blankField = YES;
     
-    [confirmationController release];
+    [df release];
+    
+    if (blankField == NO) {
+        ConfirmationController *confirmationController = [[ConfirmationController alloc] initWithNibName:@"ConfirmationController" bundle:nil card:card];
+    
+        [self.navigationController pushViewController:confirmationController animated:YES];
+    
+        [confirmationController release];
+    }
 }
 
 #pragma fieldSetup
 
 - (void)setUpFields {
     //New bit
-    toField = [[UITextField alloc] initWithFrame:CGRectMake(95, 12, 185, 30)];
+    toField = [[UITextField alloc] initWithFrame:CGRectMake(93, 12, 185, 30)];
     toField.delegate = self;
     toField.adjustsFontSizeToFitWidth = YES;
     toField.textColor = [UIColor blackColor];
@@ -224,13 +254,13 @@
     toField.tag = 0;  
     toField.clearButtonMode = UITextFieldViewModeWhileEditing; // no clear 'x' button to the right
     toField.enabled = YES;
-    toField.returnKeyType = UIReturnKeyDone;
+    toField.returnKeyType = UIReturnKeyNext;
     toField.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
     [toField addTarget:self
                 action:@selector(textFieldFinished:)
       forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    fromField = [[UITextField alloc] initWithFrame:CGRectMake(95, 12, 185, 30)];
+    fromField = [[UITextField alloc] initWithFrame:CGRectMake(93, 12, 185, 30)];
     fromField.delegate = self;
     fromField.adjustsFontSizeToFitWidth = YES;
     fromField.textColor = [UIColor blackColor];
@@ -244,13 +274,13 @@
     fromField.tag = 1;  
     fromField.clearButtonMode = UITextFieldViewModeWhileEditing; // no clear 'x' button to the right
     fromField.enabled =  YES;
-    fromField.returnKeyType = UIReturnKeyDone;
+    fromField.returnKeyType = UIReturnKeyNext;
     fromField.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
     [fromField addTarget:self
                   action:@selector(textFieldFinished:)
         forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    messageField = [[UITextField alloc] initWithFrame:CGRectMake(95, 12, 185, 30)];
+    messageField = [[UITextField alloc] initWithFrame:CGRectMake(93, 12, 185, 30)];
     messageField.delegate = self;
     messageField.adjustsFontSizeToFitWidth = YES;
     messageField.textColor = [UIColor blackColor];
@@ -275,6 +305,7 @@
 - (IBAction)textFieldFinished:(id)sender {
     if ([toField isFirstResponder]) {
         card.cardTo = toField.text;
+        [fromField becomeFirstResponder];
     }
     else if ([fromField isFirstResponder]) {
         card.cardFrom = fromField.text;
@@ -284,6 +315,34 @@
     }
     
     [sender resignFirstResponder];
+}
+
+- (IBAction)textFieldDidBeginEditing:(UITextField *)textField {
+    if (keyboardInView == NO)
+        animatedDistance = 82;
+	CGRect viewFrame = self.view.frame;
+	viewFrame.origin.y -= animatedDistance;
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+	[UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+	[self.view setFrame:viewFrame];
+	[UIView commitAnimations];
+    keyboardInView = YES;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    CGRect viewFrame = self.view.frame;
+	viewFrame.origin.y += animatedDistance;
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+	[UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+	[self.view setFrame:viewFrame];
+ 	[UIView commitAnimations];
+}
+
+-(void)dismissKeyboard { 
+    [self.view endEditing:YES];
+    keyboardInView = NO;
 }
 
 @end

@@ -18,11 +18,14 @@
     UITextField *toField;
     UITextField *fromField;
     UITextField *messageField;
+    CGFloat animatedDistance;
+    BOOL keyboardInView;
 }
 
 @property (nonatomic, retain) NSMutableArray *cardDetailArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil card:(Card *)userCard;
 - (void)setUpFields;
+-(void)dismissKeyboard;
 
 @end
