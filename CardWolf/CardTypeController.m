@@ -58,7 +58,7 @@
     
     if(CurrentLevel == 0) {
 		//Initialize our table data source
-        NSMutableArray *arrayToLoadPicker = [[NSArray alloc] init];
+        NSMutableArray *arrayToLoadPicker = [[NSMutableArray alloc] init];
 		arrayToLoadPicker = [data objectForKey:@"Rows"];
 		
         self.cardTypeArray = arrayToLoadPicker;

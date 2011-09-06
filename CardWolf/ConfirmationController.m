@@ -70,7 +70,15 @@
     df.dateStyle = NSDateFormatterMediumStyle;
     
     // Do any additional setup after loading the view from its nib.
-    cardDetails.text = [[NSString alloc] initWithFormat:@"Please check details of your order prior to confirming.\n\nCard Details:\nType:%@\nFrom:%@\nTo:%@\nMessage:%@\nDelivery Date:%@\nDelivery Address:%@\n\nwww.cardwolf.co.uk", card.cardType, card.cardFrom, card.cardTo, card.cardMessage, [df stringFromDate:card.cardDate], card.cardAddress];
+    //cardDetails.text = [[NSString alloc] initWithFormat:@"Please check details of your order prior to confirming.\n\nCard Details:\nType:%@\nFrom:%@\nTo:%@\nMessage:%@\nDelivery Date:%@\nDelivery Address:%@\n\nwww.cardwolf.co.uk", card.cardType, card.cardFrom, card.cardTo, card.cardMessage, [df stringFromDate:card.cardDate], card.cardAddress];
+    
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseURL = [NSURL fileURLWithPath:path];
+    
+    NSString *html = [[NSString alloc] initWithFormat:@"<html><head><title>The Meaning of Life</title></head><body><p>...really is <b>42</b>!</p><p><img src='%@'></p></body></html>", card.cardImage];
+    [webCardDetails loadHTMLString:html baseURL:baseURL];
+
+    
     
     [df release];
     

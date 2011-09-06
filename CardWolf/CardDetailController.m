@@ -228,8 +228,10 @@ static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
     [df release];
     
     if (blankField == NO) {
-        ConfirmationController *confirmationController = [[ConfirmationController alloc] initWithNibName:@"ConfirmationController" bundle:nil card:card];
-    
+//        ConfirmationController *confirmationController = [[ConfirmationController alloc] initWithNibName:@"ConfirmationController" bundle:nil card:card];
+
+        ConfirmationController *confirmationController = [[ConfirmationController alloc] initWithNibName:@"AdvConfirmationController" bundle:nil card:card];
+        
         [self.navigationController pushViewController:confirmationController animated:YES];
     
         [confirmationController release];
@@ -309,6 +311,7 @@ static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
     }
     else if ([fromField isFirstResponder]) {
         card.cardFrom = fromField.text;
+        [messageField becomeFirstResponder];
     }
     else if ([messageField isFirstResponder]) {
         card.cardMessage = messageField.text;

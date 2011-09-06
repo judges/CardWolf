@@ -8,6 +8,7 @@
 
 #import "MainMenuController.h"
 #import "CardTypeController.h"
+#import "CoolStuffController.h"
 
 @implementation MainMenuController
 
@@ -151,6 +152,14 @@
         [self.navigationController pushViewController:cardTypeController animated:YES];
         
         [cardTypeController release];
+    }
+    if (selectedMenu == @"Cool Stuff")
+    {
+        CoolStuffController *coolStuffController = [[CoolStuffController alloc] initWithNibName:@"CoolStuffController" bundle:nil]; 
+        
+        [self.navigationController pushViewController:coolStuffController animated:YES];
+        
+        [coolStuffController release];
     }
 }
 

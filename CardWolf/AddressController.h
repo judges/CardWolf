@@ -18,6 +18,7 @@
     UITextField *address2Field;
     UITextField *cityField;
     UITextField *postcodeField;
+    BOOL viewHasMoved;
 }
 
 @property (nonatomic, retain) NSMutableArray *addressDetails;

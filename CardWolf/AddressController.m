@@ -28,7 +28,7 @@
         numberField.textColor = [UIColor blackColor];
         numberField.placeholder = @"Property Number";
         numberField.keyboardType = UIKeyboardTypeDefault;
-        numberField.returnKeyType = UIReturnKeyDone;
+        numberField.returnKeyType = UIReturnKeyNext;
         numberField.backgroundColor = [UIColor whiteColor];
         numberField.autocorrectionType = UITextAutocorrectionTypeYes; // no auto correction support
         numberField.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
@@ -47,7 +47,7 @@
         address1Field.textColor = [UIColor blackColor];
         address1Field.placeholder = @"Address Line";
         address1Field.keyboardType = UIKeyboardTypeDefault;
-        address1Field.returnKeyType = UIReturnKeyDone;
+        address1Field.returnKeyType = UIReturnKeyNext;
         address1Field.backgroundColor = [UIColor whiteColor];
         address1Field.autocorrectionType = UITextAutocorrectionTypeYes; // no auto correction support
         address1Field.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
@@ -66,7 +66,7 @@
         address2Field.textColor = [UIColor blackColor];
         address2Field.placeholder = @"Address Line 2";
         address2Field.keyboardType = UIKeyboardTypeDefault;
-        address2Field.returnKeyType = UIReturnKeyDone;
+        address2Field.returnKeyType = UIReturnKeyNext;
         address2Field.backgroundColor = [UIColor whiteColor];
         address2Field.autocorrectionType = UITextAutocorrectionTypeYes; // no auto correction support
         address2Field.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
@@ -85,7 +85,7 @@
         cityField.textColor = [UIColor blackColor];
         cityField.placeholder = @"City";
         cityField.keyboardType = UIKeyboardTypeDefault;
-        cityField.returnKeyType = UIReturnKeyDone;
+        cityField.returnKeyType = UIReturnKeyNext;
         cityField.backgroundColor = [UIColor whiteColor];
         cityField.autocorrectionType = UITextAutocorrectionTypeYes; // no auto correction support
         cityField.autocapitalizationType = UITextAutocapitalizationTypeWords; // no auto capitalization support
@@ -149,6 +149,8 @@
     [numberField becomeFirstResponder];
     
     addressDetails = [[NSMutableArray alloc] initWithObjects:@"Number", @"Address", @"", @"City", @"Postcode", nil];
+    
+    viewHasMoved = NO;
 }
 
 - (void)viewDidUnload
@@ -279,15 +281,31 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([numberField isFirstResponder]) {
+        [address1Field becomeFirstResponder];
+    }
+    else if ([address1Field isFirstResponder]) {
+        [address2Field becomeFirstResponder];
+    }
+    else if ([address2Field isFirstResponder]) {
+        [cityField becomeFirstResponder];
+    }
+    else if ([cityField isFirstResponder]) {
+        [postcodeField becomeFirstResponder];
+    }
+    else if ([postcodeField isFirstResponder]) {
+        [textField resignFirstResponder];
+        [self setViewMovedUp:NO];
+    }
     [textField resignFirstResponder];
     
     return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if ([textField isEqual:cityField])
+    if ([textField isEqual:cityField] || [textField isEqual:postcodeField])
     {
-        if (self.view.frame.origin.y >= 0)
+        if (self.view.frame.origin.y >= 0 && viewHasMoved == NO)
         {
             [self setViewMovedUp:YES];
         }
@@ -308,10 +326,12 @@
     {
         rect.origin.y -= 60;
         rect.size.height += 60;
+        viewHasMoved = YES;
     } else {
         if (rect.origin.y != 0) {
             rect.origin.y += 60;
             rect.size.height -= 60;
+            viewHasMoved = NO;
         }
     }
     self.view.frame = rect;

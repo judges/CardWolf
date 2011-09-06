@@ -71,7 +71,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     //restore view opacities to normal
-    for (UIView *view in carousel.visibleViews)
+    for (UIView *view in carousel.visibleItemViews)
     {
         view.alpha = 1.0;
     }
@@ -237,6 +237,19 @@
 }
 
 #pragma mark -
+
+#pragma mark Button tap event
+
+- (void)buttonTapped:(UIButton *)sender
+{
+    card.cardImage = [pictureArray objectAtIndex:sender.tag];
+    
+    CardDetailController *detailController = [[CardDetailController alloc] initWithNibName:@"CardDetailController" bundle:nil card:card];
+    
+    [self.navigationController pushViewController:detailController animated:YES];
+    
+    [detailController release];
+}
 
 @end
 

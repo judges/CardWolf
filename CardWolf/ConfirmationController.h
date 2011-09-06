@@ -18,7 +18,8 @@ typedef enum PaymentStatuses {
 
 @interface ConfirmationController : UIViewController <PayPalPaymentDelegate> {
     Card *card;
-    IBOutlet UITextView *cardDetails;
+    //IBOutlet UITextView *cardDetails;
+    IBOutlet UIWebView *webCardDetails;
     UIButton *payPalButton;
     CGFloat y;
     PaymentStatus status;
