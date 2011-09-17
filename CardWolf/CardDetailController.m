@@ -12,22 +12,28 @@
 #import "DeliveryDateController.h"
 #import "AddressController.h"
 #import "ConfirmationController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "StringHelper.h"
+
+#define kDefaultMessageLabel        @""
+#define kDefaultRowHeight           44.0
+#define FONT_SIZE                   17.0f
+#define CELL_CONTENT_WIDTH          280.0f
+#define CELL_CONTENT_MARGIN         40.0f
+
 
 @implementation CardDetailController
 
 @synthesize cardDetailArray;
-
-// This code handles the scrolling when tabbing through input fields
-static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
+@synthesize expandingMessageController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil card:(Card *)userCard
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         card = userCard;
-        self.navigationItem.title = @"Card Details";
-        
-        [self setUpFields];
+        self.navigationItem.title = card.cardType;
+
     }
     return self;
 }
@@ -62,6 +68,7 @@ static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
     cardDetailArray = [[NSMutableArray alloc] init];
     
     // First Section
+    
     NSArray *toFromArray = [NSArray arrayWithObjects:@"To", @"From", nil];
     NSDictionary *toFromDict = [NSDictionary dictionaryWithObject:toFromArray forKey:@"Menu"];
     
@@ -78,24 +85,6 @@ static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
     [cardDetailArray addObject:messageDict];
     [cardDetailArray addObject:dateDict];
     [cardDetailArray addObject:addressDict];
-    
-    cardTitle.text = card.cardType;
-    
-    UIImage *image = [UIImage imageNamed:card.cardImage];
-    cardImage.image = image;
-    
-    UIColor *color = [UIColor groupTableViewBackgroundColor];
-	if (CGColorGetPattern(color.CGColor) == NULL) {
-		color = [UIColor lightGrayColor];
-	}
-	self.view.backgroundColor = color; 
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                          action:@selector(dismissKeyboard)];
-    
-    [self.view addGestureRecognizer:tap];
-    tap.cancelsTouchesInView = NO;
-    keyboardInView = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -126,48 +115,42 @@ static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CardDetailIdentifier"];
-    
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"CardDetailIdentifier"] autorelease];
-    }
-    
     NSDictionary *dictionary = [cardDetailArray objectAtIndex:indexPath.section];
     NSArray *array = [dictionary objectForKey:@"Menu"];
+
+    NSString *cellIdentifier = [array objectAtIndex:indexPath.row];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier] autorelease];
+    }
     
     cell.textLabel.text = [array objectAtIndex:indexPath.row];
     
-    if (cell.textLabel.text == @"Message") {
-        [cell addSubview:messageField];
-        if (card.cardMessage.length > 0) 
-            messageField.text = card.cardMessage;
+    if (cell.textLabel.text == @"Message" && card.cardMessage.length > 0) {
+        cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+        cell.detailTextLabel.numberOfLines = 0;
+        //cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:FONT_SIZE];
+        cell.detailTextLabel.text = card.cardMessage;
     }
-    if (cell.textLabel.text == @"To") {
-        [cell addSubview:toField];
-        if (card.cardTo.length > 0) 
-            toField.text = card.cardTo;
+    if (cell.textLabel.text == @"To" && card.cardTo.length > 0) {
+        cell.detailTextLabel.text = card.cardTo;
     }
-    if (cell.textLabel.text == @"From") {
-        [cell addSubview:fromField];
-        if (card.cardFrom.length > 0) 
-            fromField.text = card.cardFrom;
+    if (cell.textLabel.text == @"From" && card.cardFrom.length > 0) {
+        cell.detailTextLabel.text = card.cardFrom;
     }
     if (cell.textLabel.text == @"Date" && card.cardDate != nil) {
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         df.dateStyle = NSDateFormatterMediumStyle;
         
         cell.detailTextLabel.text = [df stringFromDate:card.cardDate];
-        [df release];
     }
-    
     if (cell.textLabel.text == @"Address" && card.cardAddress.length > 0) {
         cell.detailTextLabel.text = card.cardAddress;
     }
     
-    
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
@@ -178,21 +161,21 @@ static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
     NSArray *array = [dictionary objectForKey:@"Menu"];
     NSString *selectedMenu = [array objectAtIndex:indexPath.row];
     
-    //    if (selectedMenu == @"Message")
-    //    {
-    //        MessageController *messageController = [[MessageController alloc] initWithNibName:@"MessageController" bundle:nil card:card]; 
-    //            
-    //        [self.navigationController pushViewController:messageController animated:YES];
-    //            
-    //        [messageController release];
-    //    }
-    //    if (selectedMenu == @"To" || selectedMenu == @"From") {
-    //        ToFromController *toFromController = [[ToFromController alloc] initWithNibName:@"ToFromController" bundle:nil card:card]; 
-    //        
-    //        [self.navigationController pushViewController:toFromController animated:YES];
-    //        
-    //        [toFromController release];
-    //    }
+    if (selectedMenu == @"Message")
+    {
+        AddNoteViewController *messageController = [[AddNoteViewController alloc] initWithNibName:@"AddNoteViewController" bundle:nil card:card]; 
+            
+        [self.navigationController pushViewController:messageController animated:YES];
+            
+        [messageController release];
+    }
+    if (selectedMenu == @"To" || selectedMenu == @"From") {
+        ToFromController *toFromController = [[ToFromController alloc] initWithNibName:@"ToFromController" bundle:nil card:card]; 
+        
+        [self.navigationController pushViewController:toFromController animated:YES];
+        
+        [toFromController release];
+    }
     if (selectedMenu == @"Date") {
         DeliveryDateController *deliveryDateController = [[DeliveryDateController alloc] initWithNibName:@"DeliveryDateController" bundle:nil card:card];
         
@@ -207,145 +190,27 @@ static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
     }
 }
 
+//Manages the height of the cell.
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {  
+    if (indexPath.section == 1 && indexPath.row == 0 && card.cardMessage.length > 0) {
+        NSString *cellText = card.cardMessage;
+        UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:FONT_SIZE + 3.0f];
+        CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+        CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    
+        return labelSize.height + 20 < kDefaultRowHeight ? kDefaultRowHeight : labelSize.height + 20;
+    }
+    
+    return kDefaultRowHeight;
+} 
+
 - (IBAction)doneButtonTapped:(id)sender {
     //Validate the fields! 
-    BOOL blankField = NO;
-   
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateStyle = NSDateFormatterMediumStyle;
+    ConfirmationController *confirmationController = [[ConfirmationController alloc] initWithNibName:@"ConfirmationController" bundle:nil card:card];
     
-    if ([card.cardTo length] == 0)
-        blankField = YES;
-    if ([card.cardFrom length] == 0)
-        blankField = YES;
-    if ([card.cardMessage length] == 0)
-        blankField = YES;
-    if ([[df stringFromDate:card.cardDate] length] == 0)
-        blankField = YES;
-    if ([card.cardAddress length] == 0)
-        blankField = YES;
+    [self.navigationController pushViewController:confirmationController animated:YES];
     
-    [df release];
-    
-    if (blankField == NO) {
-//        ConfirmationController *confirmationController = [[ConfirmationController alloc] initWithNibName:@"ConfirmationController" bundle:nil card:card];
-
-        ConfirmationController *confirmationController = [[ConfirmationController alloc] initWithNibName:@"AdvConfirmationController" bundle:nil card:card];
-        
-        [self.navigationController pushViewController:confirmationController animated:YES];
-    
-        [confirmationController release];
-    }
-}
-
-#pragma fieldSetup
-
-- (void)setUpFields {
-    //New bit
-    toField = [[UITextField alloc] initWithFrame:CGRectMake(93, 12, 185, 30)];
-    toField.delegate = self;
-    toField.adjustsFontSizeToFitWidth = YES;
-    toField.textColor = [UIColor blackColor];
-    toField.keyboardType = UIKeyboardTypeDefault;
-    toField.returnKeyType = UIReturnKeyDone;
-    toField.backgroundColor = [UIColor whiteColor];
-    toField.autocorrectionType = UITextAutocorrectionTypeYes;
-    toField.autocapitalizationType = UITextAutocapitalizationTypeSentences; 
-    toField.textAlignment = UITextAlignmentLeft;
-    toField.enablesReturnKeyAutomatically = YES;
-    toField.tag = 0;  
-    toField.clearButtonMode = UITextFieldViewModeWhileEditing; // no clear 'x' button to the right
-    toField.enabled = YES;
-    toField.returnKeyType = UIReturnKeyNext;
-    toField.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-    [toField addTarget:self
-                action:@selector(textFieldFinished:)
-      forControlEvents:UIControlEventEditingDidEndOnExit];
-    
-    fromField = [[UITextField alloc] initWithFrame:CGRectMake(93, 12, 185, 30)];
-    fromField.delegate = self;
-    fromField.adjustsFontSizeToFitWidth = YES;
-    fromField.textColor = [UIColor blackColor];
-    fromField.keyboardType = UIKeyboardTypeDefault;
-    fromField.returnKeyType = UIReturnKeyDone;
-    fromField.backgroundColor = [UIColor whiteColor];
-    fromField.autocorrectionType = UITextAutocorrectionTypeYes; 
-    fromField.autocapitalizationType = UITextAutocapitalizationTypeSentences; 
-    fromField.textAlignment = UITextAlignmentLeft;
-    fromField.enablesReturnKeyAutomatically = YES;
-    fromField.tag = 1;  
-    fromField.clearButtonMode = UITextFieldViewModeWhileEditing; // no clear 'x' button to the right
-    fromField.enabled =  YES;
-    fromField.returnKeyType = UIReturnKeyNext;
-    fromField.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-    [fromField addTarget:self
-                  action:@selector(textFieldFinished:)
-        forControlEvents:UIControlEventEditingDidEndOnExit];
-    
-    messageField = [[UITextField alloc] initWithFrame:CGRectMake(93, 12, 185, 30)];
-    messageField.delegate = self;
-    messageField.adjustsFontSizeToFitWidth = YES;
-    messageField.textColor = [UIColor blackColor];
-    messageField.keyboardType = UIKeyboardTypeDefault;
-    messageField.returnKeyType = UIReturnKeyDone;
-    messageField.backgroundColor = [UIColor whiteColor];
-    messageField.autocorrectionType = UITextAutocorrectionTypeYes; // no auto correction support
-    messageField.autocapitalizationType = UITextAutocapitalizationTypeSentences; // no auto capitalization support
-    messageField.textAlignment = UITextAlignmentLeft;
-    messageField.enablesReturnKeyAutomatically = YES;
-    messageField.tag = 2;  
-    messageField.clearButtonMode = UITextFieldViewModeWhileEditing; // no clear 'x' button to the right
-    messageField.enabled =  YES;
-    messageField.returnKeyType = UIReturnKeyDone;
-    messageField.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
-    [messageField addTarget:self
-                     action:@selector(textFieldFinished:)
-           forControlEvents:UIControlEventEditingDidEndOnExit];
-}
-
-#pragma textField Editing
-- (IBAction)textFieldFinished:(id)sender {
-    if ([toField isFirstResponder]) {
-        card.cardTo = toField.text;
-        [fromField becomeFirstResponder];
-    }
-    else if ([fromField isFirstResponder]) {
-        card.cardFrom = fromField.text;
-        [messageField becomeFirstResponder];
-    }
-    else if ([messageField isFirstResponder]) {
-        card.cardMessage = messageField.text;
-    }
-    
-    [sender resignFirstResponder];
-}
-
-- (IBAction)textFieldDidBeginEditing:(UITextField *)textField {
-    if (keyboardInView == NO)
-        animatedDistance = 82;
-	CGRect viewFrame = self.view.frame;
-	viewFrame.origin.y -= animatedDistance;
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	[UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-	[self.view setFrame:viewFrame];
-	[UIView commitAnimations];
-    keyboardInView = YES;
-}
-
--(void)textFieldDidEndEditing:(UITextField *)textField {
-    CGRect viewFrame = self.view.frame;
-	viewFrame.origin.y += animatedDistance;
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	[UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-	[self.view setFrame:viewFrame];
- 	[UIView commitAnimations];
-}
-
--(void)dismissKeyboard { 
-    [self.view endEditing:YES];
-    keyboardInView = NO;
+    [confirmationController release];
 }
 
 @end

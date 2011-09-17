@@ -8,24 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "Card.h"
+#import "AddNoteViewController.h"
 
-@interface CardDetailController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
+
+@interface CardDetailController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    AddNoteViewController *expandingMessageController;
     NSMutableArray *cardDetailArray;
     Card *card;
     IBOutlet UITableView *tableViewOutlet;
-    IBOutlet UIImageView *cardImage;
-    IBOutlet UILabel *cardTitle;
-    UITextField *toField;
-    UITextField *fromField;
-    UITextField *messageField;
-    CGFloat animatedDistance;
-    BOOL keyboardInView;
 }
 
 @property (nonatomic, retain) NSMutableArray *cardDetailArray;
+@property (nonatomic, retain) AddNoteViewController *expandingMessageController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil card:(Card *)userCard;
-- (void)setUpFields;
--(void)dismissKeyboard;
 
 @end

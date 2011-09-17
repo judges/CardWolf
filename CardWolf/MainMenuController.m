@@ -153,6 +153,9 @@
         
         [cardTypeController release];
     }
+    if (selectedMenu == @"Contact Us")
+    {                                                  
+    }
     if (selectedMenu == @"Cool Stuff")
     {
         CoolStuffController *coolStuffController = [[CoolStuffController alloc] initWithNibName:@"CoolStuffController" bundle:nil]; 

@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Card.h"
 
 
-@interface CoolStuffController : UIViewController <UITextFieldDelegate> {
+@interface CoolStuffController : UIViewController <UITextFieldDelegate, UIActionSheetDelegate> {
     
     UITextView *textView;
+    Card *card;
+    NSString *requestType;
 }
 
 @property (nonatomic, retain) IBOutlet UITextView *textView;
+- (IBAction)showActionSheet;
 
 @end

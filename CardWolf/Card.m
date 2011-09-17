@@ -21,5 +21,5 @@
 @synthesize cardMessage;
 @synthesize cardImage;
 @synthesize cardAddressArray;
-
+@synthesize orderID;
 @end

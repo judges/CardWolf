@@ -8,6 +8,7 @@
 
 #import "CardFlowViewController.h"
 #import "CardDetailController.h"
+#import "CardViewController.h"
 
 #define ITEM_SPACING 210
 #define USE_BUTTONS YES
@@ -48,6 +49,8 @@
         {
             [items addObject:[NSNumber numberWithInt:i]];
         }
+        
+        
     }
     return self;
 }
@@ -88,10 +91,14 @@
     [super viewDidLoad];
     
     carousel.type = iCarouselTypeCoverFlow;
+    carousel.bounces = NO;
+    
     if ([pictureArray count] > 1) 
         wrap = YES;
-    else
+    else {
         wrap = YES;
+        carousel.scrollEnabled = NO;
+    }
     
     UIColor *color = [UIColor groupTableViewBackgroundColor];
 	if (CGColorGetPattern(color.CGColor) == NULL) {
@@ -213,25 +220,28 @@
         
         card.cardImage = [pictureArray objectAtIndex:index];
         
-        NSLog(@"%@", card.cardImage);
+//        NSLog(@"%@", card.cardImage);
+//        
+//        CardDetailController *detailController = [[CardDetailController alloc] initWithNibName:@"CardDetailController" bundle:nil card:card];
+//        
+//        [self.navigationController pushViewController:detailController animated:YES];
+//        
+//        [detailController release];
         
-        CardDetailController *detailController = [[CardDetailController alloc] initWithNibName:@"CardDetailController" bundle:nil card:card];
-        
-        [self.navigationController pushViewController:detailController animated:YES];
-        
-        [detailController release];
 	}
 	else
 	{
         
         card.cardImage = [pictureArray objectAtIndex:index];
+//        
+//		//NSLog(@"Selected item number %i", index);
+//        CardDetailController *detailController = [[CardDetailController alloc] initWithNibName:@"CardDetailController" bundle:nil card:card];
+//            
+//        [self.navigationController pushViewController:detailController animated:YES];
+//            
+//        [detailController release];
         
-		//NSLog(@"Selected item number %i", index);
-        CardDetailController *detailController = [[CardDetailController alloc] initWithNibName:@"CardDetailController" bundle:nil card:card];
-            
-        [self.navigationController pushViewController:detailController animated:YES];
-            
-        [detailController release];
+        [self showActionSheet];
         
 	}
 }
@@ -243,12 +253,38 @@
 - (void)buttonTapped:(UIButton *)sender
 {
     card.cardImage = [pictureArray objectAtIndex:sender.tag];
-    
-    CardDetailController *detailController = [[CardDetailController alloc] initWithNibName:@"CardDetailController" bundle:nil card:card];
-    
-    [self.navigationController pushViewController:detailController animated:YES];
-    
-    [detailController release];
+
+    [self showActionSheet];
+}
+
+#pragma mark UIActionSheet stuff
+
+-(IBAction)showActionSheet {
+    UIActionSheet *popupQuery = [[UIActionSheet alloc] 
+                                 initWithTitle:@"Recipient" 
+                                 delegate:self 
+                                 cancelButtonTitle:@"Cancel" 
+                                 destructiveButtonTitle:nil
+                                 otherButtonTitles:@"Send to self", @"Send to other", nil];
+    popupQuery.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    [popupQuery showInView:self.view];
+    [popupQuery release];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        CardViewController *detailController = [[CardViewController alloc] initWithNibName:@"CardViewController" bundle:nil card:card];
+        
+        [self.navigationController pushViewController:detailController animated:YES];
+        
+        [detailController release];
+    } else if (buttonIndex == 1) {
+        CardDetailController *detailController = [[CardDetailController alloc] initWithNibName:@"CardDetailController" bundle:nil card:card];
+        
+        [self.navigationController pushViewController:detailController animated:YES];
+    } else if (buttonIndex == 2) {
+        NSLog(@"Cancel button");
+    }
 }
 
 @end

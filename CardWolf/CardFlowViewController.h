@@ -10,7 +10,7 @@
 #import "Card.h"
 #import "iCarousel.h"
 
-@interface CardFlowViewController : UIViewController <iCarouselDataSource, iCarouselDelegate> {
+@interface CardFlowViewController : UIViewController <iCarouselDataSource, iCarouselDelegate, UIActionSheetDelegate> {
 	Card *card;	
     NSArray *pictureArray;
 }
@@ -19,5 +19,6 @@
 @property (nonatomic, retain) NSArray *pictureArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil card:(Card *)userCard;
+- (IBAction)showActionSheet;
 
 @end

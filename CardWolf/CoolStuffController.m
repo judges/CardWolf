@@ -7,6 +7,7 @@
 //
 
 #import "CoolStuffController.h"
+#import "CoolStuff2Controller.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
@@ -44,6 +45,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    card = [Card alloc];
 }
 
 - (void)viewDidUnload
@@ -68,12 +70,22 @@
     NSString *uniqueIdentifier = [device uniqueIdentifier];
     
     // Start request
+    requestType = @"order";
     NSString *code = textField.text;
-    NSURL *url = [NSURL URLWithString:@"http://www.cardwolf.co.uk/promos/"];
+    //NSURL *url = [NSURL URLWithString:@"http://www.cardwolf.co.uk/promos/"];
+    //NSURL *url = [NSURL URLWithString:@"http://localhost:8888/cardwolf.co.uk/order/"];
+    NSURL *url = [NSURL URLWithString:@"http://www.cardwolf.co.uk/order/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:@"1" forKey:@"rw_app_id"];
-    [request setPostValue:code forKey:@"code"];
-    [request setPostValue:uniqueIdentifier forKey:@"device_id"];
+    [request setPostValue:@"130B" forKey:@"addressnumber"];
+    [request setPostValue:@"Landcoft Road" forKey:@"add_line1"];
+    [request setPostValue:@"" forKey:@"add_line2"];
+    [request setPostValue:@"London" forKey:@"add_city"];
+    [request setPostValue:@"SE229JW" forKey:@"add_postcode"];
+    [request setPostValue:@"2011-11-27" forKey:@"del_date"];
+    [request setPostValue:@"Alex Clark" forKey:@"sender"];
+    [request setPostValue:@"Neil Sheppard" forKey:@"recipient"];
+    [request setPostValue:@"Happy Birthday!!" forKey:@"card_msg"];
+    [request setPostValue:@"MC022.jpg" forKey:@"card_id"];
     [request setDelegate:self];
     [request startAsynchronous];
     
@@ -84,7 +96,7 @@
     textView.text = @"";
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Redeeming code...";
+    hud.labelText = @"Processing Order...";
     
     return TRUE;
 }
@@ -92,19 +104,11 @@
 - (void)requestFinished:(ASIHTTPRequest *)request {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     if (request.responseStatusCode == 400) {
-        textView.text = @"Invalid Code";
-    } else if (request.responseStatusCode == 403) {
-        textView.text = @"Code already used";
+        textView.text = @"Invalid Order";
     } else if (request.responseStatusCode == 200) {
-        NSString *responseString = [request responseString];
-        NSDictionary *responseDict = [responseString JSONValue];
-        NSString *unlockCode = [responseDict objectForKey:@"unlock_code"];
-        
-        if ([unlockCode compare:@"cardwolf.iphone.unlock.promo1"] == NSOrderedSame) {
-            textView.text = @"The cake is a lie!";
-        } else {
-            textView.text = [NSString stringWithFormat:@"Received unexpected unlock code: %@", unlockCode];
-        }
+        textView.text = [[NSString alloc] initWithFormat:@"Order processed, rowid: %@", request.responseString];
+        card.orderID = request.responseString;
+        [self showActionSheet];
     } else {
         textView.text = @"Unexpected error";
     }
@@ -115,5 +119,30 @@
     NSError *error = [request error];
     textView.text = error.localizedDescription;
 }
+
+-(IBAction)showActionSheet {
+    UIActionSheet *popupQuery = [[UIActionSheet alloc] 
+                                 initWithTitle:@"Order" 
+                                 delegate:self 
+                                 cancelButtonTitle:@"Cancel" 
+                                 destructiveButtonTitle:nil
+                                 otherButtonTitles:@"Complete", @"Do nothing", nil];
+    popupQuery.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    [popupQuery showInView:self.view];
+    [popupQuery release];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        CoolStuff2Controller *detailController = [[CoolStuff2Controller alloc] initWithNibName:@"CoolStuff2Controller" bundle:nil card:card];
+        
+        [self.navigationController pushViewController:detailController animated:YES];
+        
+        [detailController release];
+    } else if (buttonIndex == 1) {
+    } else if (buttonIndex == 2) {
+    }
+}
+
 
 @end

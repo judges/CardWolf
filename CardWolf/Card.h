@@ -20,6 +20,7 @@
     NSDate *cardDate;
     double *cardCost;
     NSMutableArray *cardAddressArray;
+    NSString *orderID;
 }
 
 @property (nonatomic, retain) NSString* cardTo;
@@ -32,5 +33,6 @@
 @property (nonatomic, retain) NSDate* cardDate;
 @property (nonatomic) double* cardCost;
 @property (nonatomic, retain) NSMutableArray* cardAddressArray;
+@property (nonatomic, retain) NSString *orderID;
 
 @end
